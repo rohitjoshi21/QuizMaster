@@ -1,0 +1,17 @@
+{% extends "homebase.html" %}
+
+{% block pagetitle%}Sign Up{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block content%}
+    <h1>Sign Up</h1>
+    <form method="POST"> 
+        {% csrf_token %}
+        {{ form }}
+
+        <button>Sign Up </button>
+    </form>
+{% endblock %}
