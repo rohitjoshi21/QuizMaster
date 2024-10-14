@@ -1,0 +1,17 @@
+{% extends "studentbase.html" %}
+
+{% block pagetitle %}
+    Account
+{% endblock%}
+
+{% block content %}
+    <section class="about">
+        <h1>Student Account</h1>
+        <p>You can change account settings and logout from here</p>
+
+        <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
+        <li>Username: {{ user.username }}</li>
+        <li>Password: {{ user.password }}</li>
+        
+    </section>
+{% endblock %}

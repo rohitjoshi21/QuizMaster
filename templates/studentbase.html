@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block pagetitle %}{% endblock %}</title>
+<link rel="stylesheet" href="{% static "studentbase.css" %}">
+{% block stylesheets %}
+{% endblock %}
+</head>
+<body>
+  
+  <nav>
+    <ul>
+      <li><a class={% if active == "dashboard" %} "active" {% else %} "notactive" {% endif %} href="/dashboard">Dashboard</a></li>
+      <li><a class={% if active == "quiz" %} "active" {% else %} "notactive" {% endif %} href="quiz">Quiz</a></li>
+      <li><a class={% if active == "leaderboard" %} "active" {% else %} "notactive" {% endif %}href="leaderboard">Leaderboard</a></li>
+      <li><a class={% if active == "account" %} "active" {% else %} "notactive" {% endif %}href="account">Account</a></li>
+    </ul>
+  </nav>
+  <div style="margin-left:25%;padding:1px 16px;height:1000px;">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+

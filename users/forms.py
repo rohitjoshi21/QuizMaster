@@ -1,17 +1,23 @@
 from django import forms
-from .models import MyUser
+from .models import StudentUser, OrganizationUser
 
 
 class LoginForm(forms.ModelForm):
     class Meta:
-        model = MyUser
+        model = StudentUser
         fields = ["username","password"]
         labels = {
             "username":"User Name",
             "password": "Password"
         }
 
-class SignupForm(forms.ModelForm):
+class StudentSignupForm(forms.ModelForm):
     class Meta:
-        model = MyUser
-        fields = ["first_name","last_name","username","email","password","user_type"]
+        model = StudentUser
+        fields = ["first_name","last_name","username","email","password", "organization"]
+
+
+class OrganizationSignupForm(forms.ModelForm):
+    class Meta:
+        model = OrganizationUser
+        fields = ["organizationname","username","email","password"]

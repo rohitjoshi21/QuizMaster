@@ -1,0 +1,23 @@
+{% extends "homebase.html" %}
+
+{% block pagetitle%}Sign Up{% endblock %}
+{% block stylesheets %}
+
+{% endblock %}
+
+
+{% block content%}
+    <h1>Sign Up</h1>
+    <p>User Type: </p>
+
+    <form method=POST>
+        {% csrf_token %}
+      <input type="radio" id="html" name="user_type" value="organization">
+      <label for="html">Organization</label><br>
+      <input type="radio" id="css" name="user_type" value="student">
+      <label for="css">Student</label><br>
+ 
+
+        <button>Next </button>
+    </form> 
+{% endblock %}
