@@ -53,11 +53,13 @@ class QuizView(View):
             return redirect('quiz_complete', quiz_id=quiz_id)  # Redirect to completion page
         
         context = {
+            'active':'quiz',
             'quiz': quiz,
             'question': current_question,
             'question_num': question_num,
             'total_questions': questions.count(),
-            'lastquestion': False
+            'lastquestion': False,
+            'question_range':list(range(1,questions.count()+1))
         }
         context['lastquestion'] = question_num == questions.count()
 

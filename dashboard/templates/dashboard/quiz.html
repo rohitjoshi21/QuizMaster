@@ -1,13 +1,14 @@
 {% extends "studentbase.html" %}
-
+{% load static %}
 {% block pagetitle %}
     Quiz
 {% endblock%}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static "dashboard/quiz.css" %}"
+{% endblock %}
 {% block content %}
     <section class="about">
         <h1>Quizzes</h1>
-        {% comment %} <p>You can practise quizzes here</p> {% endcomment %}
         <ul>
             {% for quiz in quizzes %}
                 <li>

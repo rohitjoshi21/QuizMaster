@@ -1,10 +1,15 @@
 {% extends "studentbase.html" %}
+{% load static %}
 
 {% block pagetitle %}
     Quiz
 {% endblock%}
+{% block stylesheets %}
+    <link rel="stylesheet" href = "{%static "dashboard/quiz_view.css"%}">
+{% endblock%}
 
 {% block content %}
+    <div>
     <h1>{{ quiz.title }}</h1>
     <p>{{ quiz.description }}</p>
     
@@ -29,8 +34,22 @@
                     <label for="option4">{{ question.answerd }}</label>
                 </div>
 
-            <!-- Button to go to the next question -->
             <button type="submit">{% if lastquestion %}Submit{% else %}Next{% endif %}</button>
         </form>
+    </div>
+
+    <div id="question-navigation">
+        <h3>Question Navigation</h3>
+        <ul>
+            {% for i in question_range %}
+                <li>
+                    <a href="{% url 'quiz_view' quiz.id i %}" {% if i == question_num %}class="current-question"{% endif %}>
+                        {{ i }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
     </div>
 {% endblock %}
