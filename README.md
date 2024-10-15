@@ -1,4 +1,4 @@
-# Quiz App
+# Quiz Master
 
 A Django-based web application for creating and taking quizzes.
 
@@ -13,8 +13,8 @@ A Django-based web application for creating and taking quizzes.
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/quiz-app.git
-   cd quiz-app
+   https://github.com/rohitjoshi21/QuizMaster
+   cd QuizMaster
    ```
 
 2. Create a virtual environment and activate it:
@@ -45,34 +45,16 @@ A Django-based web application for creating and taking quizzes.
 
 ## Usage
 
-1. Access the admin panel at `http://localhost:8000/admin/` to create quizzes and questions.
+1. Login using organization account to add and update quizzes.
 2. Navigate to `http://localhost:8000/` to view and take quizzes.
 
-## Project Structure
+## To Do
 
-- `quiz/` - Main Django app directory
-  - `models.py` - Database models for Quiz and Question
-  - `views.py` - View functions for rendering quizzes and processing answers
-  - `urls.py` - URL configurations for the quiz app
-- `templates/` - HTML templates
-  - `studentbase.html` - Base template for student views
-  - `quiz_view.html` - Template for displaying quiz questions
-- `static/` - Static files (CSS, JavaScript, images)
-  - `dashboard/quiz_view.css` - Styles for the quiz view
+1. Save the quiz result for each user in database.
+2. Add data and visualization in dashboard.
+3. Write script to load questions from csv into database.
+4. Add css to login and signup pages.
+5. Implement leaderboard
+6. Create organization page for student monitoring and analysis.
 
-## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Django documentation
-- Contributors and maintainers of dependencies used in this project
