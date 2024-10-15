@@ -1,0 +1,31 @@
+.account-section {
+    text-align: left;
+    margin-top: 50px;
+    margin-left:100px;
+}
+
+.account-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-details li {
+    margin-bottom: 10px;
+}
+
+.logout-button {
+    margin-top: 40px;
+}
+
+.logout-button a {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button a:hover {
+    background-color: #3e8e41;
+}

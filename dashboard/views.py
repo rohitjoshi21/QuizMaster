@@ -10,11 +10,29 @@ from django.urls import reverse
 def check_student(user):
     return StudentUser.objects.get(username=user.username).user_type == "student"
 
+from django.utils import timezone
+
 @login_required
 @user_passes_test(check_student)
 def studenthomepage(request):
-    return render(request,"dashboard/dashboard.html",{
-        'active':'dashboard'
+    stduser = StudentUser.objects.get(username = request.user.username)
+    valid_submissions = Submission.objects.filter(user=stduser).order_by("-timestamp")
+    
+    
+    percentages = []
+    for submission in valid_submissions:
+        correct_score = submission.correctsubmission
+        total_questions = submission.quiz.questions.count()
+        percentage = correct_score / total_questions * 100
+        percentages.append(percentage)
+
+
+    return render(request, 'dashboard/dashboard.html', {
+        # 'filter':filters
+        'active':'dashboard',
+        'sub_per':zip(valid_submissions,percentages),
+        'valid_submissions': valid_submissions,
+        'percentages': percentages,
     })
 
 @login_required

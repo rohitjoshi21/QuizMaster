@@ -1,12 +1,51 @@
 {% extends "studentbase.html" %}
 
+{% load static %}
+
 {% block pagetitle %}
     Dashboard
-{% endblock%}
+{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+{% endblock %}
 
 {% block content %}
     <section class="about">
-        <h1>You are logged in as a student</h1>
-        <p>Your progress report will be here</p>
+        <h1>Student Dashboard</h1>
+        <p>View your progress and performance.</p>
+
+        {% comment %} <form method="GET">
+            <label for="filter">Filter By:</label>
+            <select name="filter" id="filter">
+                {% for key, value in filters.items %}
+                    <option value="{{ key }}"{% if selected_filter == key %} selected {% endif %}>{{ key }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filter</button>
+        </form> {% endcomment %}
+
+        {% if valid_submissions %}
+            <h2>Your Performance is</h2>
+            <table class="submission-table">
+                <thead>
+                    <tr>
+                        <th>Submission Date</th>
+                        <th>Quiz</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub, percent in sub_per %}
+                        <tr>
+                            <td>{{sub.timestamp|date:"Y-m-d"}}</td>
+                            <td>{{sub.quiz.title}}</td>
+                            <td>{{ percent }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No submissions found within the selected filter.</p>
+        {% endif %}
     </section>
 {% endblock %}

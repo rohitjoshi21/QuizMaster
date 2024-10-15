@@ -1,18 +1,27 @@
 {% extends "studentbase.html" %}
+{% load static %}
+
 
 {% block pagetitle %}
     Account
-{% endblock%}
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'dashboard/account.css' %}">
+{% endblock %}
 
 {% block content %}
-    <section class="about">
+    <section class="account-section">
         <h1>Student Account</h1>
-        <p>You can change account settings and logout from here</p>
+        <p>You can change account settings and logout from here.</p>
 
-        <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
-        <li>Username: {{ user.username }}</li>
-        {% comment %} <li>Password: {{ user.password }}</li> {% endcomment %}
-        
-        <a href="{% url "logout" %}">Log Out</a>
+        <ul class="account-details">
+            <li><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+            <li><strong>Username:</strong> {{ user.username }}</li>
+            <li><strong>Organization:</strong> {{ user.organization }}</li>
+            </ul>
+
+        <div class="logout-button">
+            <a href="{% url "logout" %}">Log Out</a>
+        </div>
     </section>
 {% endblock %}
