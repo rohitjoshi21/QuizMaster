@@ -1,12 +1,68 @@
 {% extends "studentbase.html" %}
+{% load static %}
 
 {% block pagetitle %}
     Leaderboard
-{% endblock%}
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'dashboard/leaderboard.css' %}">
+{% endblock %}
 
 {% block content %}
-    <section class="about">
-        <h1>Leaderboard Here</h1>
-        <p>You can compare your progress with other students</p>
+    <section class="leaderboard">
+        <h1>Leaderboard</h1>
+        <p>Compare your best scores with other students</p>
+
+        <div class="leaderboard-container">
+            <div class="quiz-selector">
+                <form method="get">
+                    <select name="quiz_id" onchange="this.form.submit()">
+                        {% for quiz in quizzes %}
+                            <option value="{{ quiz.id }}" {% if quiz == selected_quiz %}selected{% endif %}>
+                                {{ quiz.title }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+
+            <div class="leaderboard-table">
+                <h2>{{ selected_quiz.title }}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Student</th>
+                            <th>Best Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in leaderboard_entries %}
+                            <tr {% if entry == user_entry %}class="current-user"{% endif %}>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ entry.username }}</td>
+                                <td>{{ entry.best_score }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3">No submissions yet.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if user_entry %}
+                <div class="user-stats">
+                    <p>Your Rank: {{ user_rank }}</p>
+                    <p>Your Best Score: {{ user_entry.best_score }}</p>
+                </div>
+            {% else %}
+                <div class="user-stats">
+                    <p>You haven't submitted this quiz yet.</p>
+                </div>
+            {% endif %}
+        </div>
     </section>
 {% endblock %}

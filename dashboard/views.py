@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required,user_passes_test
-from users.models import StudentUser
+from users.models import StudentUser, OrganizationUser
 from .models import Quiz, Question, Submission
 from django.views import View
 from django.contrib.auth import logout
@@ -116,12 +116,54 @@ def quiz_complete(request, quiz_id):
         'results': results
     })
 
+from django.db.models import Max, OuterRef, Subquery
+from django.db.models.functions import Coalesce
+
 @login_required
 @user_passes_test(check_student)
 def leaderboard(request):
-    return render(request,"dashboard/leaderboard.html",{
-        'active':'leaderboard'
+    current_user = StudentUser.objects.get(username = request.user.username)
+    organization = current_user.organization
+
+    quizzes_for_org = Quiz.objects.filter(organization=organization)
+    
+    selected_quiz_id = request.GET.get('quiz_id')
+    if selected_quiz_id:
+        selected_quiz = get_object_or_404(Quiz, id=selected_quiz_id, organization=organization)
+    else:
+        selected_quiz = quizzes_for_org.latest('updated_at')  # Assuming Quiz has a 'created_at' field
+    
+    # Subquery to get the best submission for each user
+    best_submissions = Submission.objects.filter(
+        quiz=selected_quiz,
+        user=OuterRef('pk')
+    ).order_by('-correctsubmission', 'timestamp')
+
+    # Annotate users with their best submission and order by score
+    leaderboard_entries = StudentUser.objects.filter(
+        organization=organization,
+        submission__quiz=selected_quiz
+    ).annotate(
+        best_score=Subquery(best_submissions.values('correctsubmission')[:1]),
+        best_timestamp=Subquery(best_submissions.values('timestamp')[:1])
+    ).exclude(best_score=None).order_by('-best_score', 'best_timestamp')
+
+    # Get the current user's rank and best submission
+    user_entry = leaderboard_entries.filter(pk=current_user.pk).first()
+    if user_entry:
+        user_rank = list(leaderboard_entries.values_list('pk', flat=True)).index(current_user.pk) + 1
+    else:
+        user_rank = None
+
+    return render(request, "dashboard/leaderboard.html", {
+        'active': 'leaderboard',
+        'quizzes': quizzes_for_org,
+        'selected_quiz': selected_quiz,
+        'leaderboard_entries': leaderboard_entries,
+        'user_entry': user_entry,
+        'user_rank': user_rank,
     })
+
 
 @login_required
 @user_passes_test(check_student)
