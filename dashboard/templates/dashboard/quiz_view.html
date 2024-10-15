@@ -17,25 +17,52 @@
         <h2>Question {{ question_num }} of {{ total_questions }}</h2>
         <p>{{ question.question_text }}</p>
 
-        <form method="post">
+        <form method="post" id="quizForm">
             {% csrf_token %}
             
-                <div>
-                    <input type="radio" id="option1" name="selected_option" value="a">
-                    <label for="option1">{{ question.answera }}</label>
-
-                    <input type="radio" id="option2" name="selected_option" value="b">
-                    <label for="option2">{{ question.answerb }}</label>
-
-                    <input type="radio" id="option3" name="selected_option" value="c">
-                    <label for="option3">{{ question.answerc }}</label>
-
-                    <input type="radio" id="option4" name="selected_option" value="d">
-                    <label for="option4">{{ question.answerd }}</label>
-                </div>
-
-            <button type="submit">{% if lastquestion %}Submit{% else %}Next{% endif %}</button>
+            <div>
+                <input type="radio" id="option1" name="selected_option" value="a" onchange="checkSelection()">
+                <label for="option1">{{ question.answera }}</label>
+        
+                <input type="radio" id="option2" name="selected_option" value="b" onchange="checkSelection()">
+                <label for="option2">{{ question.answerb }}</label>
+        
+                <input type="radio" id="option3" name="selected_option" value="c" onchange="checkSelection()">
+                <label for="option3">{{ question.answerc }}</label>
+        
+                <input type="radio" id="option4" name="selected_option" value="d" onchange="checkSelection()">
+                <label for="option4">{{ question.answerd }}</label>
+            </div>
+        
+            <div class="button-group">
+                <button type="submit" id="nextButton" disabled>{% if lastquestion %}Submit{% else %}Next{% endif %}</button>
+                <button type="button" id="skipButton" onclick="skipQuestion()">Skip</button>
+            </div>
         </form>
+        
+        <script>
+        function checkSelection() {
+            var radios = document.getElementsByName("selected_option");
+            var nextButton = document.getElementById("nextButton");
+            
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    nextButton.disabled = false;
+                    return;
+                }
+            }
+            nextButton.disabled = true;
+        }
+        
+        function skipQuestion() {
+            // You can customize this function based on how you want to handle skipping
+            // For now, it just submits the form without any selection
+            document.getElementById("quizForm").submit();
+        }
+        
+        // Initialize button state on page load
+        window.onload = checkSelection;
+        </script>
     </div>
 
     <div id="question-navigation">

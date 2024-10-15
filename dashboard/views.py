@@ -75,7 +75,7 @@ class QuizView(View):
 
 
         answers = request.session.get('answers')
-        answers[question_num-1] = request.POST['selected_option']
+        answers[question_num-1] = request.POST.get('selected_option')
         request.session['answers'] = answers
   
 
