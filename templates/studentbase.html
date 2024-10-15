@@ -12,10 +12,10 @@
   
   <nav>
     <ul>
-      <li><a class={% if active == "dashboard" %} "active" {% else %} "notactive" {% endif %} href="/dashboard">Dashboard</a></li>
-      <li><a class={% if active == "quiz" %} "active" {% else %} "notactive" {% endif %} href="quiz">Quiz</a></li>
-      <li><a class={% if active == "leaderboard" %} "active" {% else %} "notactive" {% endif %}href="leaderboard">Leaderboard</a></li>
-      <li><a class={% if active == "account" %} "active" {% else %} "notactive" {% endif %}href="account">Account</a></li>
+      <li><a class={% if active == "dashboard" %} "active" {% else %} "notactive" {% endif %} href="{% url "student"%}">Dashboard</a></li>
+      <li><a class={% if active == "quiz" %} "active" {% else %} "notactive" {% endif %} href="{% url "quiz"%}">Quiz</a></li>
+      <li><a class={% if active == "leaderboard" %} "active" {% else %} "notactive" {% endif %} href="{% url "leaderboard"%}">Leaderboard</a></li>
+      <li><a class={% if active == "account" %} "active" {% else %} "notactive" {% endif %} href="{% url "account"%}">Account</a></li>
     </ul>
   </nav>
   <div style="margin-left:25%;padding:1px 16px;height:1000px;">

@@ -7,6 +7,15 @@
 {% block content %}
     <section class="about">
         <h1>Quizzes</h1>
-        <p>You can practise quizzes here</p>
+        {% comment %} <p>You can practise quizzes here</p> {% endcomment %}
+        <ul>
+            {% for quiz in quizzes %}
+                <li>
+                    <h3>{{ quiz.title }}</h3>
+                    <h5>{{ quiz.updated_at }}</h5>
+                    <a href="{% url "quiz_view" quiz.id 1%}">Start</a>
+                </li>
+            {% endfor %}
+        </ul>
     </section>
 {% endblock %}
