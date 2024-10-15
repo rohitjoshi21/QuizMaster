@@ -26,12 +26,18 @@ def quiz(request):
 
 class QuizView(View):
     def get(self, request, quiz_id, question_num=1):
-        """
-        Handles the display of the quiz and its questions, one at a time.
-        """
-        quiz = get_object_or_404(Quiz, id=quiz_id)
         
+
+        quiz = get_object_or_404(Quiz, id=quiz_id)
         questions = quiz.questions.all()
+
+
+        answers = request.session.get('answers')
+        if answers == None:
+            answers = ['' for i in range(questions.count())]
+        request.session['answers'] = answers
+
+        
         
         # Ensure the question number is valid
         if question_num < 1 or question_num > questions.count():
@@ -65,7 +71,12 @@ class QuizView(View):
         quiz = get_object_or_404(Quiz, id=quiz_id)
         questions = quiz.questions.all()
 
-        print(request.POST['selected_option'])
+
+        answers = request.session.get('answers')
+        answers[question_num-1] = request.POST['selected_option']
+        request.session['answers'] = answers
+  
+
 
         if question_num < questions.count():
             return redirect('quiz_view', quiz_id=quiz_id, question_num=question_num + 1)
@@ -76,11 +87,14 @@ class QuizView(View):
 def quiz_complete(request,quiz_id):
 
     quiz = get_object_or_404(Quiz, id=quiz_id)
-    correctanswers = [question.correctanswer for question in quiz.questions.all()]
-
+    actualanswers = [question.correctanswer for question in quiz.questions.all()]
+    submittedanswers = request.session.get('answers')
+    correctlyanswered = [actualanswers[i] == submittedanswers[i] for i in range(len(actualanswers))]
+    correctcount = sum(correctlyanswered)
 
     return render(request,"dashboard/quiz_submitted.html",{
-        'active':'quiz'
+        'active':'quiz',
+        'correctcount':correctcount
     })
 
 
