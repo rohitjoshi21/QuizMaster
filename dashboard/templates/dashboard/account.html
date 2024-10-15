@@ -11,7 +11,8 @@
 
         <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
         <li>Username: {{ user.username }}</li>
-        <li>Password: {{ user.password }}</li>
+        {% comment %} <li>Password: {{ user.password }}</li> {% endcomment %}
         
+        <a href="{% url "logout" %}">Log Out</a>
     </section>
 {% endblock %}

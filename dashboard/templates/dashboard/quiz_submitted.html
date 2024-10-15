@@ -1,12 +1,38 @@
 {% extends "studentbase.html" %}
+{% load static %}
 
 {% block pagetitle %}
     Quiz Submitted
-{% endblock%}
-
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static "dashboard/quiz_submitted.css" %}">
+{% endblock %}
 {% block content %}
     <section class="about">
-        <h1>Quiz is submitted !</h1>
-        <h2>You got {{ correctcount }} answers correct !</h2>
+        <h1 align="center">Submitted!</h1>
+        <h2>You got {{ correct_count }} answers correct and {{ incorrect_count }} answers incorrect.</h2>
+
+        <table class="quiz-results">
+            <thead>
+                <tr>
+                    <th>QN</th>
+                    <th>Question</th>
+                    <th>Your Answer</th>
+                    <th>Correct Answer</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for question_text, submitted_answer, correct_answer, is_correct in results %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a href="{% url 'quiz_view' quiz.id forloop.counter %}">{{ question_text }}<a></td>
+                        <td>{{ submitted_answer }}</td>
+                        <td>{{ correct_answer }}</td>
+                        <td>{% if is_correct %}Correct{% else %}Incorrect{% endif %}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
 {% endblock %}

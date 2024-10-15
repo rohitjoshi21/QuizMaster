@@ -1,6 +1,6 @@
 from django.db import models
-
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 class Quiz(models.Model):
     title = models.CharField(max_length=255)
@@ -14,7 +14,7 @@ class Quiz(models.Model):
         verbose_name_plural = "Quizzes"
 
     def __str__(self):
-        return self.title
+        return f"{self.title} by {self.organization.organizationname}"
 
 
 class Question(models.Model):
@@ -39,6 +39,16 @@ class Question(models.Model):
 
     def __str__(self):
         return self.question_text
+    
+class Submission(models.Model):
+    user = models.ForeignKey('users.StudentUser',on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.PROTECT)
+    correctsubmission = models.IntegerField(validators=[MinValueValidator(0)])
+    timestamp = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.quiz.title} by {self.user.username}"
+
 
 
 

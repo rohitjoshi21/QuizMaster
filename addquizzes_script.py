@@ -38,7 +38,7 @@ for row in reader:
     question = Question(organization=orguser, question_text=questiontext, answera=answera, answerb=answerb, answerc=answerc, answerd=answerd, correctanswer=correctanswer)
     question.save()
   
-  
+
     quiz.questions.add(question)
 
 print("Quiz and questions have been successfully added to the database.")

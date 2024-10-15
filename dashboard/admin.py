@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Quiz, Question
+from .models import Quiz, Question, Submission
 from users.models import OrganizationUser
 
 class QuizAdmin(admin.ModelAdmin):
@@ -45,5 +45,14 @@ class QuestionAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(organization=request.user)
 
+# class SubmissionAdmin(models.Admin):
+#     def get_queryset(self, request):
+#         qs = super().get_queryset(request)
+#         if request.user.is_superuser:
+#             return qs
+         
+#         return qs.filter(quiz__in=request.user)
+
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Question, QuestionAdmin)
+admin.site.register(Submission)
