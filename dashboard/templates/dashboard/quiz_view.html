@@ -30,7 +30,7 @@
                 </div>
 
             <!-- Button to go to the next question -->
-            <button type="submit">Next</button>
+            <button type="submit">{% if lastquestion %}Submit{% else %}Next{% endif %}</button>
         </form>
     </div>
 {% endblock %}

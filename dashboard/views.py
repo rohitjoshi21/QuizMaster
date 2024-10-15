@@ -41,6 +41,8 @@ class QuizView(View):
         current_question = questions[question_num - 1]
         
         # Check if the quiz is over
+        
+            
         if question_num > questions.count():
             return redirect('quiz_complete', quiz_id=quiz_id)  # Redirect to completion page
         
@@ -48,8 +50,11 @@ class QuizView(View):
             'quiz': quiz,
             'question': current_question,
             'question_num': question_num,
-            'total_questions': questions.count()
+            'total_questions': questions.count(),
+            'lastquestion': False
         }
+        context['lastquestion'] = question_num == questions.count()
+
         return render(request, 'dashboard/quiz_view.html', context)
 
     def post(self, request, quiz_id, question_num):
@@ -60,15 +65,20 @@ class QuizView(View):
         quiz = get_object_or_404(Quiz, id=quiz_id)
         questions = quiz.questions.all()
 
-        # Check if the next question exists
+        print(request.POST['selected_option'])
+
         if question_num < questions.count():
-            # Increment the question number and redirect to the next question
             return redirect('quiz_view', quiz_id=quiz_id, question_num=question_num + 1)
         
+
         return redirect('quiz_complete', quiz_id=quiz_id)
     
 def quiz_complete(request,quiz_id):
-    print('called')
+
+    quiz = get_object_or_404(Quiz, id=quiz_id)
+    correctanswers = [question.correctanswer for question in quiz.questions.all()]
+
+
     return render(request,"dashboard/quiz_submitted.html",{
         'active':'quiz'
     })
