@@ -1,12 +1,51 @@
 {% extends "homebase.html" %}
+{% load static %}
 
 {% block pagetitle %}
-    QuizMaster
-{% endblock%}
-
+    QuizMaster - Create and Manage Quizzes
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'users/homepage.css' %}">
+{% endblock %}
 {% block content %}
-    <section class="about">
-        <h1>About Us</h1>
-        <p>This is a quiz hosting site where you can create quizzes and manage your students</p>
-    </section>
+    <header class="hero">
+        <h1>Welcome to QuizMaster</h1>
+        <p>Create, manage, and share quizzes with ease</p>
+        <a href="/signup" class="cta-button">Get Started</a>
+    </header>
+
+    <main>
+        <section class="features">
+            <h2>Why Choose QuizMaster?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Easy Quiz Creation</h3>
+                    <p>Create engaging quizzes in minutes with our user-friendly interface.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Student Management</h3>
+                    <p>Effortlessly manage your students and track their progress.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Instant Results</h3>
+                    <p>Get immediate feedback and analytics on quiz performance.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Customizable Themes</h3>
+                    <p>Personalize your quizzes with various themes and styles.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About QuizMaster</h2>
+            <p>QuizMaster is a powerful quiz hosting platform designed for educators, trainers, and quiz enthusiasts. Our mission is to make quiz creation and management a breeze, allowing you to focus on what matters most - engaging your audience and fostering learning.</p>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to get started?</h2>
+            <p>Join thousands of satisfied users and revolutionize your quiz experience today!</p>
+            <a href="/signup" class="cta-button">Sign Up Now</a>
+        </section>
+    </main>
 {% endblock %}

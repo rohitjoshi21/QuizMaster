@@ -1,34 +1,60 @@
 body {
-    font-size: 28px;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+nav {
+  background-color: #122584;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+nav li {
+  margin: 0;
+  padding: 0;
+}
+
+nav li a {
+  display: block;
+  color: #ecf0f1;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* border-radius: 1rem; */
+}
+
+nav li a:hover {
+  background-color: #0b4f93;
+  color: #3498db;
+}
+
+nav .active {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+nav .active:hover {
+  background-color: #2980b9;
+}
+
+@media screen and (max-width: 600px) {
   nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 0;
+      flex-direction: column;
   }
-  
+
   nav li {
-    float: left;
+      width: 100%;
   }
-  
-  nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  nav li a:hover {
-    background-color: #111;
-  }
-  
-  nav .active {
-    background-color: #3d79ae;
-  }
+}

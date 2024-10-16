@@ -1,23 +1,38 @@
 {% extends "homebase.html" %}
+{% load static %}
 
-{% block pagetitle%}Sign Up{% endblock %}
+{% block pagetitle %}Choose Account Type - QuizMaster{% endblock %}
+
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="{% static 'users/presignup.css' %}">
 {% endblock %}
 
+{% block content %}
+<div class="presignup-container">
+    <h1 class="presignup-title">Join QuizMaster</h1>
+    <p class="presignup-subtitle">Choose your account type to get started</p>
 
-{% block content%}
-    <h1>Sign Up</h1>
-    <p>User Type: </p>
-
-    <form method=POST>
+    <form method="POST" class="presignup-form">
         {% csrf_token %}
-      <input type="radio" id="html" name="user_type" value="organization">
-      <label for="html">Organization</label><br>
-      <input type="radio" id="css" name="user_type" value="student">
-      <label for="css">Student</label><br>
- 
-
-        <button>Next </button>
-    </form> 
+        <div class="account-type-container">
+            <div class="account-type">
+                <input type="radio" id="organization" name="user_type" value="organization" required>
+                <label for="organization">
+                    <span class="icon">🏢</span>
+                    <span class="type">Organization</span>
+                    <span class="description">Create and manage quizzes for your students or employees</span>
+                </label>
+            </div>
+            <div class="account-type">
+                <input type="radio" id="student" name="user_type" value="student" required>
+                <label for="student">
+                    <span class="icon">👨‍🎓</span>
+                    <span class="type">Student</span>
+                    <span class="description">Take quizzes and track your progress</span>
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="next-button">Next</button>
+    </form>
+</div>
 {% endblock %}

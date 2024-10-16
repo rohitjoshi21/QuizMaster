@@ -12,8 +12,6 @@ from django.contrib.auth.models import Permission, User, Group
 from django.contrib.contenttypes.models import ContentType
 
 
-def homepage(request):
-    return render(request,"users/homepage.html")
 
 class CustomLoginView(auth_views.LoginView):
     template_name = 'users/loginpage.html'
@@ -39,10 +37,8 @@ class SignupView(View):
     def post(self, request):
         user_type = request.POST['user_type']
         if user_type == "organization":
-            print("walk")
             return HttpResponseRedirect(reverse("orgsignup"))
         elif user_type == "student":
-            print("run")
             return HttpResponseRedirect(reverse("stdsignup"))
         
         
@@ -52,7 +48,8 @@ class OrgSignUpView(View):
     def get(self,request):
         oform = OrganizationSignupForm()
         return render(request,"users/signup.html",{
-            "form":oform
+            "form":oform,
+            "user_type":"organization"
         })
 
     def post(self,request):
@@ -76,7 +73,8 @@ class OrgSignUpView(View):
 
             user.save()
 
-            return render(request,"users/homepage.html")
+            login(request,user)
+            return HttpResponseRedirect(reverse("login"))
 
         else:
             return render(request,"users/signup.html",{
@@ -87,7 +85,8 @@ class StdSignUpView(View):
     def get(self,request):
         sform = StudentSignupForm()
         return render(request,"users/signup.html",{
-            "form":sform
+            "form":sform,
+            "user_type":"organization"
         })
 
     def post(self, request):
@@ -108,8 +107,9 @@ class StdSignUpView(View):
             
             user.save()
 
-            return render(request,"users/homepage.html")
+            login(request,user)
 
+            return HttpResponseRedirect(reverse("login"))
         else:
             return render(request,"users/signup.html",{
                 "form":sform,

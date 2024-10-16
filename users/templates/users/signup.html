@@ -1,18 +1,36 @@
 {% extends "homebase.html" %}
+{% load static %}
 
-{% block pagetitle%}Sign Up{% endblock %}
+{% block pagetitle %}Sign Up - QuizMaster{% endblock %}
+
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="{% static 'users/signup.css' %}">
 {% endblock %}
 
+{% block content %}
+<div class="signup-container">
+    <h1 class="signup-title">Create Your Account</h1>
+    <p class="signup-subtitle">Join QuizMaster as a {{ user_type|title }}</p>
 
-{% block content%}
-    <h1>Sign Up</h1>
-    <form method="POST"> 
+    <form method="POST" class="signup-form"> 
         {% csrf_token %}
         
-        {{ form }}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.help_text %}
+                    <div class="helptext">{{ field.help_text }}</div>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
 
-        <button>Sign Up </button>
+        <button type="submit" class="signup-button">Sign Up</button>
     </form>
+
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+</div>
 {% endblock %}

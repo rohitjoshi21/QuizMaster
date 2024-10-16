@@ -1,5 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
+  font-size: large;
   line-height: 1.6;
   color: #333;
   margin: 0 auto;
@@ -10,9 +11,9 @@ body {
   nav ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    width: 25%;
-    background-color: #f1f1f1;
+    padding: 10px;
+    width: 20%;
+    background-color: #0c0c52;
     position: fixed;
     height: 100%;
     overflow: auto;
@@ -20,9 +21,12 @@ body {
   
   nav li a {
     display: block;
-    color: #000;
+    color: #f5f1f1;
     padding: 8px 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-decoration: none;
+    /* background-color: rgb(51, 36, 149); */
   }
   
   nav li a.active {
@@ -31,6 +35,6 @@ body {
   }
   
   nav li a:hover:not(.active) {
-    background-color: #555;
+    background-color: #73a2e5;
     color: white;
   }

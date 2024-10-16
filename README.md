@@ -50,11 +50,11 @@ A Django-based web application for creating and taking quizzes.
 
 ## To Do
 
-1. Save the quiz result for each user in database.
+1. Save the quiz result for each user in database. DONE
 2. Add data and visualization in dashboard.
-3. Write script to load questions from csv into database.
+3. Write script to load questions from csv into database. DONE
 4. Add css to login and signup pages.
-5. Implement leaderboard
+5. Implement leaderboard DONE
 6. Create organization page for student monitoring and analysis.
 
 

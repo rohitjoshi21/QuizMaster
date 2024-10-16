@@ -1,0 +1,102 @@
+/* Pre-Signup Page Styles */
+.presignup-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.presignup-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.presignup-subtitle {
+    font-size: 1rem;
+    color: #7f8c8d;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.presignup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-type-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.account-type {
+    flex-basis: 48%;
+}
+
+.account-type input[type="radio"] {
+    display: none;
+}
+
+.account-type label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.account-type input[type="radio"]:checked + label {
+    background-color: #e3f2fd;
+    border-color: #3498db;
+}
+
+.account-type .icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.account-type .type {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.account-type .description {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    text-align: center;
+}
+
+.next-button {
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 600px) {
+    .account-type-container {
+        flex-direction: column;
+    }
+
+    .account-type {
+        margin-bottom: 1rem;
+    }
+}

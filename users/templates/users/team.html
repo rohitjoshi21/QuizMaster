@@ -1,0 +1,40 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block pagetitle %}
+    Our Team - QuizMaster
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'users/team.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="team-container">
+        <h1 class="team-title">Meet Our Team</h1>
+        <p class="team-description">The brilliant minds behind QuizMaster</p>
+        
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="{% static 'users/images/rohit.jpg' %}" alt="Rohit Josh" class="member-image">
+                <h2 class="member-name">Rohit Joshi</h2>
+                <p class="member-role">Co-founder & Lead Developer</p>
+                <p class="member-bio">Rohit is a full-stack developer with a passion for creating intuitive educational tools. He brings years of experience in web development and e-learning platforms to QuizMaster.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static '/users/images/samriddhi.jpg' %}" alt="Samriddhi Karki" class="member-image">
+                <h2 class="member-name">Samriddhi Karki</h2>
+                <p class="member-role">Co-founder & UX Designer</p>
+                <p class="member-bio">Samriddhi is an experienced UX designer with a background in educational psychology. Her expertise ensures that QuizMaster is not only functional but also user-friendly and engaging.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static '/users/images/bikash.jpg' %}" alt="Josh Thompson" class="member-image">
+                <h2 class="member-name">Bikash Adhikari</h2>
+                <p class="member-role">Content Strategist</p>
+                <p class="member-bio">Bikash is an education specialist who oversees the quality and effectiveness of quizzes on our platform. His insights help shape QuizMaster into a powerful learning tool.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
