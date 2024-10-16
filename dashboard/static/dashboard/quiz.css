@@ -41,8 +41,9 @@
 }
 
 .about a {
-    display: inline-block;
+    /* display: inline-block; */
     background-color: #3498db;
+    /* float:right; */
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -52,4 +53,17 @@
 
 .about a:hover {
     background-color: #2980b9;
+}
+
+.newquiz {
+    float:right;
+    margin-bottom: 20px;
+}
+
+.newquiz a{
+    background-color: green;
+}
+
+.newquiz a:hover{
+    background-color: darkgreen;
 }

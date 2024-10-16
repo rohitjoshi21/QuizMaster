@@ -1,0 +1,26 @@
+{% extends "organizationbase.html" %}
+{% load static %}
+
+
+{% block pagetitle %}
+    Account
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'dashboard/account.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="account-section">
+        <h1>Organization Account</h1>
+        <p>You can change account settings and logout from here.</p>
+
+        <ul class="account-details">
+            <li><strong>Organization Name:</strong> {{ user.organizationname }}</li>
+            <li><strong>Username:</strong> {{ user.username }}</li>
+            </ul>
+
+        <div class="logout-button">
+            <a href="{% url "logout" %}">Log Out</a>
+        </div>
+    </section>
+{% endblock %}

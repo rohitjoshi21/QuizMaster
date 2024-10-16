@@ -23,7 +23,7 @@ class CustomLoginView(auth_views.LoginView):
         '''
         user = self.request.user
         if user.is_superuser or user.is_staff:
-            self.next_page = "/admin"
+            self.next_page = "/organization"
         else:  
             self.next_page = "/student"
         

@@ -1,0 +1,23 @@
+{% extends "organizationbase.html" %}
+
+{% load static %}
+
+{% block pagetitle %}
+    Adding New Quiz
+{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'organization/addquiz.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="about">
+        <h1>Add Quiz</h1>
+    <form method="POST", enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+
+        <button>Add</button>
+    </form>
+
+    </section>
+{% endblock %}

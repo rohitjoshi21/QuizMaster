@@ -1,0 +1,21 @@
+question_text,answera,answerb,answerc,answerd,correctanswer
+What is the time complexity of binary search?,O(n),O(log n),O(n^2),O(1),b
+Which data structure uses LIFO principle?,Queue,Tree,Stack,Linked List,c
+What is the purpose of a database in Django?,Stores project settings,Manages user authentication,Stores application data,Handles URL routing,c
+Which HTTP method is used to submit a form?,GET,POST,PUT,DELETE,b
+What is the primary function of a model in Django?,Defines the database structure,Handles user interactions,Renders HTML templates,Processes HTTP requests,a
+How do you create a new migration in Django?,python manage.py makemigrations,python manage.py migrate,python manage.py runserver,python manage.py shell,a
+Which template engine is commonly used in Django?,Jinja2,Handlebars,Mustache,Pug,a
+What is the purpose of a view in Django?,Handles user interactions,Defines the database structure,Renders HTML templates,Processes HTTP requests,d
+How do you create a new Django project?,django-admin startproject myproject,django-admin newproject myproject,python manage.py startproject myproject,python manage.py newproject myproject,a
+What is the purpose of the settings.py file in a Django project?,Stores project-specific configurations,Handles URL routing,Defines database models,Manages user authentication,a
+How do you create a custom user model in Django?,Extend the User model,Create a new model and set AUTH_USER_MODEL,Use django.contrib.auth.models.User,No custom user models are supported,b
+What is the role of the urls.py file in a Django project?,Defines URL patterns and their corresponding views,Stores project settings,Manages user authentication,Handles database interactions,a
+How do you render a template in a Django view?,"render(request, 'template_name.html')",load_template('template_name.html'),template_name.render(),render_template('template_name.html'),a
+What is the purpose of the forms.py module in Django?,Defines form classes for data validation and presentation,Handles URL routing,Manages user authentication,Stores project settings,a
+How do you create a custom form field in Django?,Create a subclass of forms.Field,Extend the forms.Form class,Use the forms.CharField class,No custom form fields are supported,a
+What is the difference between a model manager and a queryset?,"A model manager is a class, while a queryset is an object","A model manager defines database operations, while a queryset represents a set of database records","A model manager is used for data validation, while a queryset is used for rendering templates",There is no difference between a model manager and a queryset,b
+How do you create a custom filter in Django templates?,Define a custom filter function and register it in the templatetags directory,Use the built-in filter tag,Create a new template tag,No custom filters are supported,a
+What is the purpose of the admin.py file in a Django project?,Defines the administrative interface for managing models,Handles URL routing,Manages user authentication,Stores project settings,a
+How do you create a custom user profile in Django?,Create a new model and add a OneToOneField to the User model,Extend the User model with additional fields,Use the built-in UserProfile model,No custom user profiles are supported,a
+What is the purpose of the csrf_token in a Django form?,Prevents cross-site request forgery attacks,Encrypts form data,Validates form input,Adds a timestamp to the form,a

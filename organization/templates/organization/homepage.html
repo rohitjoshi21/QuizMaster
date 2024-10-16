@@ -1,0 +1,31 @@
+{% extends "organizationbase.html" %}
+
+{% load static %}
+
+{% block pagetitle %}
+    Dashboard
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'organization/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="dashboard">
+        <h1>Organization Dashboard</h1>
+        <div class="stats-container">
+            <div class="stat-card">
+                <h2>Users</h2>
+                <p class="stat-number">{{ user_count }}</p>
+            </div>
+            <div class="stat-card">
+                <h2>Quizzes</h2>
+                <p class="stat-number">{{ quiz_count }}</p>
+            </div>
+            <div class="stat-card">
+                <h2>Submissions</h2>
+                <p class="stat-number">{{ submission_count }}</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

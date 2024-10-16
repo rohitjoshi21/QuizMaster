@@ -1,0 +1,29 @@
+{% extends "organizationbase.html" %}
+{% load static %}
+{% block pagetitle %}
+    Quizzes
+{% endblock%}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static "dashboard/quiz.css" %}"
+{% endblock %}
+{% block content %}
+    <section class="about">
+
+        <div class="newquiz">
+            <a href="{% url "addquiz"%}">Add New Quiz</a>
+        </div>
+
+
+        <h1>Quizzes</h1>
+        <ul>
+            {% for quiz in quizzes %}
+                <li>
+                    <h3>{{ quiz.title }}</h3>
+                    <h5>{{ quiz.updated_at }}</h5>
+                    <a href="{% url "osubmission" quiz.id %}">See Submissions</a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+    </section>
+{% endblock %}

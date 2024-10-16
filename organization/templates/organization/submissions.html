@@ -1,0 +1,43 @@
+{% extends "organizationbase.html" %}
+
+{% load static %}
+
+{% block pagetitle %}
+    Submissions
+{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="about">
+        <h1>All Submissions for {{quiztitle}}</h1>
+
+
+        {% if valid_submissions %}
+            <h2>Submissions are: </h2>
+            <table class="submission-table">
+                <thead>
+                    <tr>
+                        <th>Submission Date</th>
+                        <th>User</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sub, percent in sub_per %}
+                        <tr>
+                            <td>{{sub.timestamp|date:"Y-m-d"}}</td>
+                            <td>{{sub.user.username}}</td>
+                            <td>{{ percent }}%</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No submissions found for this quiz.</p>
+        {% endif %}
+
+        <a href="{% url "oquiz" %}">Back</a>
+    </section>
+{% endblock %}

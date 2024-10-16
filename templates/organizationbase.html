@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block pagetitle %}{% endblock %}</title>
+<link rel="stylesheet" href="{% static "studentbase.css" %}">
+{% block stylesheets %}
+{% endblock %}
+</head>
+<body>
+  
+  <nav>
+    <ul>
+      <li><a class={% if active == "overview" %} "active" {% else %} "notactive" {% endif %} href="{% url "organization"%}">Overview</a></li>
+      <li><a class={% if active == "quiz" %} "active" {% else %} "notactive" {% endif %} href="{% url "oquiz"%}">Quiz</a></li>
+      {% comment %} <li><a class={% if active == "leaderboard" %} "active" {% else %} "notactive" {% endif %} href="{% url "oleaderboard"%}">Leaderboard</a></li> {% endcomment %}
+      <li><a class={% if active == "account" %} "active" {% else %} "notactive" {% endif %} href="{% url "oaccount"%}">Account</a></li>
+      <li><a class={% if active == "admin" %} "active" {% else %} "notactive" {% endif %} href="/admin">Admin</a></li>
+    </ul>
+  </nav>
+  <div style="margin-left:23%;padding:1px 16px;height:1000px;">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+
