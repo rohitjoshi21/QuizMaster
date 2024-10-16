@@ -83,8 +83,8 @@ Here are some screenshots of the Quiz Master application:
 ## To Do
 
 1. Save the quiz result for each user in database. DONE
-2. Add data and visualization in dashboard.
+2. Add data and visualization in dashboard. DONE
 3. Write script to load questions from csv into database. DONE
-4. Add css to login and signup pages.
+4. Add css to login and signup pages. DONE
 5. Implement leaderboard DONE
-6. Create organization page for student monitoring and analysis.
+6. Create organization page for student monitoring and analysis. Partially Done
